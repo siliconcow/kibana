@@ -1,0 +1,30 @@
+<div ng-controller='alert' ng-init="init()">
+	  <div ng-show="!panel.alarms.length">You have no alerts defined.</div>
+  <div ng-repeat="alarm in panel.alarms" ng-show="ready">
+	  <input class="input-small" type="text" ng-model="alarm.name" placeholder="alert name.."></input>
+	  <input class="input-small" type="text" ng-model="alarm.query" placeholder="alert query.."></input>
+	  <input class="input-small" type="number" ng-model="alarm.threshold" placeholder="threshold" size="3" ></input>
+	  <select class="input-small"  ng-model="alarm.mode" ng-options="m for m in panel.modes"></select>
+	  <input class="input-small" type="checkbox" ng-model="alarm.enabled" checked></input>
+	  <span class="label label-{{alarm.status.label}}">{{alarm.status.msg}}</span>
+	  <span> <i class="icon-minus" ng-click="delete_alert(alarm)"></i> <span>
+  </div>
+  <div>
+	  <form>
+	  <input class="input-small" required type="text" ng-model="panel.new_alarm.name" placeholder="alert name.."></input>
+	  <input class="input-small" required type="text" ng-model="panel.new_alarm.query" placeholder="alert query.."></input>
+	  <input class="input-small" required type="number" ng-model="panel.new_alarm.threshold" placeholder="threshold" size="3" ></input>
+	  <select class="input-small" required ng-model="panel.new_alarm.mode" ng-options="m for m in panel.modes"></select>
+	  <input class="input-small" type="checkbox" ng-model="panel.new_alarm.enabled" checked></input>
+	  <span><i class="icon-plus" ng-click="add_alert()"></i></span>
+	  </form>
+  </div>
+  <!--<p ng-style="panel.style" ng-bind-html-unsafe="panel.content | striphtml | newlines"></p>
+  <markdown ng-show="ready && panel.mode == 'markdown'">
+    {{panel.content}}
+    </markdown>
+  <p ng-show="panel.mode == 'text'" ng-style='panel.style' ng-bind-html="panel.content | striphtml | newlines">
+  </p>
+  <p ng-show="panel.mode == 'html'" ng-bind-html="panel.content">
+  </p>-->
+</div>
